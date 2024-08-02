@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  fullName String
+  cpf      String @unique
+  email    String @unique
+  phone    String
+  password String
+  role     String
+
+  @@map("users")
+}
+
+model Apiary {
+  id                          Int     @id @default(autoincrement())
+  name                        String
+  latitude                    Float
+  longitude                   Float
+  tipoInstalacao              String
+  tempoItinerante             String?
+  quantidadeColmeias          String
+  outrosApiariosRaio3km       Boolean
+  qtdColmeiasOutrosApiarios   String?
+  fontesNectarPolen           Boolean
+  disponibilidadeAgua         Boolean
+  sombreamentoNatural         Boolean
+  protecaoVentosFortes        Boolean
+  distanciaSeguraContaminacao Boolean
+  distanciaMinimaConstrucoes  Boolean
+  distanciaSeguraLavouras     Boolean
+  acessoVeiculos              Boolean
+  capacidadeDeSuporte         String?
+
+  userId Int
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+}
+
+model Meliponary {
+  id                            Int     @id @default(autoincrement())
+  name                          String
+  latitude                      String
+  longitude                     String
+  tipoInstalacao                String
+  especieAbelha                 String?
+  quantidadeColmeias            String
+  outrosMeliponariosRaio1km     Boolean
+  qtdColmeiasOutrosMeliponarios String?
+  fontesNectarPolen             Boolean
+  disponibilidadeAgua           Boolean
+  sombreamentoNatural           Boolean
+  protecaoVentosFortes          Boolean
+  distanciaSeguraContaminacao   Boolean
+  distanciaMinimaConstrucoes    Boolean
+  distanciaSeguraLavouras       Boolean
+  capacidadeDeSuporte           String?
+
+  userId Int
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+}
+
+model Geojson {
+  id      Int    @id @default(autoincrement())
+  content String @map("content")
+}
