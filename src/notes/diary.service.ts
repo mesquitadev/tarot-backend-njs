@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
+import { DiaryPersist } from './dto/DiaryPersist';
 
 @Injectable()
 export class DiaryService {
@@ -35,7 +36,7 @@ export class DiaryService {
     });
   }
 
-  async update(id: number, data: Prisma.DiaryCreateInput) {
+  async update(id: number, data: DiaryPersist) {
     return this.prisma.diary.update({
       where: { id: Number(id) },
       data,
