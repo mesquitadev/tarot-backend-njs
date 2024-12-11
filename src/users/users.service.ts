@@ -41,19 +41,23 @@ export class UsersService {
 //use by auth module to register user in database
     async create(userDto: CreateUserDto): Promise<any> {
 
-        // // check if the user exists in the db
-        const userInDb = await this.prisma.user.findFirst({
-            where: {email: userDto.email}
-        });
-        if (userInDb) {
-            throw new HttpException("user_already_exist",
-                HttpStatus.CONFLICT);
-        }
-        userDto.password = await hash(userDto.password, 10);
-        return this.prisma.user.create({
-            data: userDto,
-        });
+    // check if the user exists in the db
+    const userInDb = await this.prisma.user.findFirst({
+        where: {email: userDto.email}
+    });
+    if (userInDb) {
+        throw new HttpException("user_already_exist",
+            HttpStatus.CONFLICT);
     }
+    userDto.password = await hash(userDto.password, 10);
+    const user = await this.prisma.user.create({
+        data: userDto,
+    });
+
+    // Exclude the password from the returned user object
+    const { password, cpf, ...result } = user;
+    return result;
+}
 
 //use by auth module to login user
     async findByLogin({email, password}: LoginUserDto):

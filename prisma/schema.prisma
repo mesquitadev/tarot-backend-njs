@@ -14,69 +14,38 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  fullName String
-  cpf      String @unique
-  email    String @unique
-  phone    String
-  password String
-  role     String
+  id          Int     @id @default(autoincrement())
+  fullName    String
+  cpf         String  @unique
+  email       String  @unique
+  password    String
+  annotations Diary[]
 
   @@map("users")
 }
 
-model Apiary {
-  id                          Int     @id @default(autoincrement())
-  name                        String
-  latitude                    Float
-  longitude                   Float
-  tipoInstalacao              String
-  tempoItinerante             String?
-  quantidadeColmeias          String
-  outrosApiariosRaio3km       Boolean
-  qtdColmeiasOutrosApiarios   String?
-  fontesNectarPolen           Boolean
-  disponibilidadeAgua         Boolean
-  sombreamentoNatural         Boolean
-  protecaoVentosFortes        Boolean
-  distanciaSeguraContaminacao Boolean
-  distanciaMinimaConstrucoes  Boolean
-  distanciaSeguraLavouras     Boolean
-  acessoVeiculos              Boolean
-  capacidadeDeSuporte         String?
-
-  userId Int
-
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime? @updatedAt @map("updated_at")
+model Diary {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }
 
-model Meliponary {
-  id                            Int     @id @default(autoincrement())
-  name                          String
-  latitude                      String
-  longitude                     String
-  tipoInstalacao                String
-  especieAbelha                 String?
-  quantidadeColmeias            String
-  outrosMeliponariosRaio1km     Boolean
-  qtdColmeiasOutrosMeliponarios String?
-  fontesNectarPolen             Boolean
-  disponibilidadeAgua           Boolean
-  sombreamentoNatural           Boolean
-  protecaoVentosFortes          Boolean
-  distanciaSeguraContaminacao   Boolean
-  distanciaMinimaConstrucoes    Boolean
-  distanciaSeguraLavouras       Boolean
-  capacidadeDeSuporte           String?
-
-  userId Int
-
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime? @updatedAt @map("updated_at")
+model Challenge {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-model Geojson {
-  id      Int    @id @default(autoincrement())
-  content String @map("content")
+model Tarot {
+  id        Int      @id @default(autoincrement())
+  cardName  String
+  meaning   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

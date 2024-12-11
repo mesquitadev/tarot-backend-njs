@@ -8,28 +8,21 @@ export class LoginUserDto {
 
 export class CreateUserDto {
     @ApiProperty()
-    @IsNotEmpty({message: 'O campo não pode ser vazio!'})
+    @IsNotEmpty({message: 'O campo Nome Completo não pode ser vazio!'})
     fullName: string;
 
     @ApiProperty()
-    @IsNotEmpty({message: 'O campo não pode ser vazio!'})
-    cpf: string
+    @IsNotEmpty({message: 'O campo CPF não pode ser vazio!'})
+    cpf: string;
 
     @ApiProperty()
-    @IsNotEmpty({message: 'O campo não pode ser vazio!'})
+    @IsNotEmpty({message: 'O campo email não pode ser vazio!'})
     email: string;
 
     @ApiProperty()
-    @IsNotEmpty({message: 'O campo não pode ser vazio!'})
-    phone: string
-
-    @ApiProperty()
-    @IsNotEmpty({message: 'O campo não pode ser vazio!'})
+    @IsNotEmpty({message: 'O campo senha não pode ser vazio!'})
     password: string;
 
-    @ApiProperty()
-    @IsNotEmpty({message: 'O campo não pode ser vazio!'})
-    role: string;
 }
 
 export class UpdatePasswordDto {

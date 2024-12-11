@@ -1,6 +1,6 @@
 import {IsNotEmpty, IsOptional, IsString} from "class-validator";
 
-export class MeliponaryPersist {
+export class ChallengePersist {
     @IsNotEmpty({message: 'O campo Nome não pode ser vazio!'})
     name: string;
     @IsNotEmpty({message: 'O campo Latitude não pode ser vazio!'})
