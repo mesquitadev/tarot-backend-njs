@@ -3,12 +3,14 @@ import {PrismaService} from './prisma/prisma.service';
 import {AuthModule} from './auth/auth.module';
 import {UsersModule} from "./users/users.module";
 import { DiaryModule } from './notes/diary.module';
-import { ChallengeModule } from './challenge/challenge.module';
+import { MissionModule } from './missions/mission.module';
+import { CapturePurchaseModule } from './capture-purchase/capture-purchase.module';
 
 @Module({
     imports: [
         DiaryModule,
-        ChallengeModule,
+        MissionModule,
+        CapturePurchaseModule,
         AuthModule,
         UsersModule,
     ],
