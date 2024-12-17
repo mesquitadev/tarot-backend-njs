@@ -14,19 +14,25 @@ export class CardService {
     return this.prisma.card.findUnique({ where: { id } });
   }
 
-  async create(data: CardPersist) {
-    return this.prisma.card.create({
-      data: {
-        card: data.card,
-        title: data.title,
-        subtitle: data.subtitle,
-        affirmation: data.affirmation,
-        suggestedMusic: data.suggestedMusic,
-        img: data.img,
-        blend: data.blend,
-        power: data.power,
-      },
-    });
+  async create(data: CardPersist[]) {
+    const createdCards = [];
+    for (const card of data) {
+      const createdCard = await this.prisma.card.create({
+        data: {
+          card: card.card,
+          title: card.title,
+          subtitle: card.subtitle,
+          affirmation: card.affirmation,
+          suggestedMusic: card.suggestedMusic,
+          img: card.img,
+          blend: card.blend,
+          power: card.power,
+          incense: card.incense,
+        },
+      });
+      createdCards.push(createdCard);
+    }
+    return createdCards;
   }
 
   async delete(id: number) {

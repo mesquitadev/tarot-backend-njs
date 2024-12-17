@@ -17,7 +17,7 @@ export class CardController {
   }
 
   @Post()
-  async handle(@Body() data: CardPersist) {
+  async handle(@Body() data: CardPersist[]) {
     return this.cardService.create(data);
   }
 
