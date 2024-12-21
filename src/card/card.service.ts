@@ -38,4 +38,14 @@ export class CardService {
   async delete(id: number) {
     return this.prisma.card.delete({ where: { id } });
   }
+
+  async findWithLimit(limit: number) {
+    return this.prisma.card.findMany({ take: limit });
+  }
+
+  async findRandom(limit: number) {
+    const totalCards = await this.prisma.card.count();
+    const randomOffset = Math.floor(Math.random() * (totalCards - limit));
+    return this.prisma.card.findMany({ skip: randomOffset, take: limit });
+  }
 }

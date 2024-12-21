@@ -5,11 +5,13 @@ import {UsersModule} from "./users/users.module";
 import { DiaryModule } from './notes/diary.module';
 import { MissionModule } from './missions/mission.module';
 import { CapturePurchaseModule } from './capture-purchase/capture-purchase.module';
+import { CardModule } from './card/card.module';
 
 @Module({
     imports: [
         DiaryModule,
         MissionModule,
+        CardModule,
         CapturePurchaseModule,
         AuthModule,
         UsersModule,
