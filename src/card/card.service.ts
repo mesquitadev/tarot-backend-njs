@@ -4,7 +4,8 @@ import { CardPersist } from './dto/CardPersist';
 
 @Injectable()
 export class CardService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) {
+  }
 
   async findAll() {
     return this.prisma.card.findMany();
@@ -45,7 +46,7 @@ export class CardService {
 
   async findRandom(limit: number) {
     const totalCards = await this.prisma.card.count();
-    const randomOffset = Math.floor(Math.random() * (totalCards - limit));
+    const randomOffset = totalCards > limit ? Math.floor(Math.random() * (totalCards - limit)) : 0;
     return this.prisma.card.findMany({ skip: randomOffset, take: limit });
   }
 }
