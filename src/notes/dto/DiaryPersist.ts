@@ -5,5 +5,6 @@ export class DiaryPersist {
   title: string;
   @IsNotEmpty({ message: 'O Conteúdo não pode ser vazio!' })
   content: string;
+  category: string;
   userId: number;
 }

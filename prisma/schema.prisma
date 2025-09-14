@@ -28,6 +28,8 @@ model Diary {
   id        Int      @id @default(autoincrement())
   title     String
   content   String
+  category  String
+  mood      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    Int
@@ -39,6 +41,7 @@ model Mission {
   day       Int
   title     String
   task      String
+  completed Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

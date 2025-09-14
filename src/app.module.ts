@@ -8,19 +8,30 @@ import { CapturePurchaseModule } from './capture-purchase/capture-purchase.modul
 import { CardModule } from './card/card.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 
+
 @Module({
     imports: [
         MailerModule.forRoot({
           transport: {
-            host: 'sandbox.smtp.mailtrap.io',
+            host: 'smtp-relay.brevo.com',
             port: 587,
             auth: {
-              user: '53a8b1701a570e',
-              pass: '2048a0655b7d5c',
+              user: '849a4a002@smtp-brevo.com',
+              pass: 'qQOMCXwH3FJ65ETc',
+            },
+            options: {
+              tls: {
+                rejectUnauthorized: false,
+              },
             },
           },
           defaults: {
-            from: '"Programa Poderrosa" <naoresponda@poderrosa.com>',
+            from: '"Programa Poderrosa" <mesquitadev@gmail.com>',
+          },
+          options: {
+            tls: {
+              rejectUnauthorized: false,
+            },
           },
         }),
         DiaryModule,
