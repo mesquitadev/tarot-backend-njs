@@ -29,7 +29,6 @@ model Diary {
   title     String
   content   String
   category  String
-  mood      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    Int
